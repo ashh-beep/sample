@@ -1,9 +1,270 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Website</title>
-</head>
-<body>
-    <h1>Hello Git</h1>
-</body>
-</html>
+Step 1: Install Git
+
+git --version
+
+Step 2: Create GitHub Repository
+
+Login to GitHub
+New Repository → Enter Name → Create Repository
+
+Step 3: Configure Git
+
+git config --global user.name "YourName"
+git config --global user.email "yourmail@example.com"
+
+Step 4: Initialize Repository
+
+mkdir MyWebsite
+cd MyWebsite
+git init
+
+Step 5: Create Project File
+Create index.html.
+echo "<h1>hello github</h1>
+
+Step 6: Add & Commit
+
+git add .
+git commit -m "Initial commit"
+
+Step 7: Connect to GitHub
+
+git remote add origin https://github.com/username/repositoryname.git
+git remote -v
+
+Step 8: Push Code
+
+git branch -M main
+git push -u origin main
+
+Step 9: Pull Updates
+
+git pull origin main
+
+
+p3
+Step 1: Install Docker
+
+docker --version
+docker info
+
+Step 2: Pull Ubuntu Image
+
+docker pull ubuntu
+docker images
+
+Step 3: Create and Run Ubuntu Container
+
+docker run -it ubuntu
+
+Exit Container
+
+exit
+
+View Containers
+
+docker ps
+docker ps -a
+
+Step 4: Docker Container Operations
+
+docker start <container_id>
+docker stop <container_id>
+docker rm <container_id>
+docker rmi ubuntu
+
+Step 5: Deploy a Containerized Web Application (Apache)
+
+docker run -d -p 8080:80 httpd
+docker ps
+
+Open in browser:
+
+http://localhost:8080
+
+Step 6: Using Docker Hub
+
+docker login
+docker pull nginx
+docker run -d -p 8090:80 nginx
+
+Open in browser:
+
+http://localhost:8090
+
+
+    p4
+    Verify Installation
+
+docker --version
+docker compose version
+
+If Docker is not running:
+
+Open Docker Desktop
+Wait for Engine Running
+
+Step 1: Create Project Folder
+mkdir MicroservicesApp
+cd MicroservicesApp
+
+Step 2: Create docker-compose.yml
+
+Create file:
+
+docker-compose.yml
+
+Contents:
+
+version: '3'
+
+services:
+  web1:
+    image: nginx
+    container_name: nginx-server
+    ports:
+      - "8080:80"
+
+Step 3: Verify File
+dir
+
+Step 4: Start Container
+docker compose up -d
+
+Step 5: Check Running Container
+docker ps
+
+Expected:
+
+nginx-server
+Step 6: Open Application
+http://localhost:8080
+
+You should see:
+
+Welcome to nginx!
+
+Step 7: Create Custom Web Page
+
+Create index.html:
+
+<h1>My Microservices Website</h1>
+Step 8: Update docker-compose.yml
+version: '3'
+
+services:
+  web1:
+    image: nginx
+    container_name: nginx-server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/usr/share/nginx/html
+
+Step 9: Restart Container
+docker compose down
+docker compose up -d
+
+Refresh:
+
+http://localhost:8080
+
+Output:
+
+My Microservices Website
+
+    p6
+    https://drive.google.com/drive/folders/15Qib8y9RvaM9xqSsozpN7lOX5YJ6Tlee
+
+4. Integrate SonarQube with Jenkins
+
+4.1 Install SonarQube Scanner Plugin
+Jenkins Dashboard
+→ Manage Jenkins
+→ Manage Plugins
+→ Available Plugins
+→ SonarQube Scanner
+→ Install
+
+4.2 Configure SonarQube Server
+Jenkins Dashboard
+→ Manage Jenkins
+→ Configure System
+→ SonarQube Servers
+
+Name: My SonarQube Server
+Server URL: http://localhost:9000
+Authentication Token: Generate in SonarQube
+
+4.3 Generate SonarQube Token
+SonarQube
+→ My Account
+→ Security
+→ Generate Tokens
+5. Create CI/CD Pipeline
+
+5.1 Freestyle Project
+New Item
+→ Freestyle Project
+→ Source Code Management (Git)
+→ Repository URL
+→ Build Step
+→ Execute SonarQube Scanner
+
+5.2 Create sonar-project.properties
+sonar.projectKey=myproject
+sonar.projectName=myproject
+sonar.projectVersion=1.0
+sonar.sources=src
+
+5.3 Pipeline Project (Jenkinsfile)
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven3'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('My SonarQube Server') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+    }
+}
+
+6. Run the Pipeline
+Trigger Jenkins Job
+→ Check Build Status
+→ Open http://localhost:9000
+→ View Analysis Report
+
+    p8
+    mvn archetype:generate   -DgroupId="com.example.mavenapp"   -DartifactId=mavenapp   -DarchetypeArtifactId=maven-archetype-quickstart   -DinteractiveMode=false
+
+cd mavenapp  
+mvn clean install 
+
+mvn exec:java -Dexec.mainClass="com.example.mavenapp.App"
+
+(after changing the src if the output doesnt change -->)
+mvn clean compile
+
+
+
+    p9
+
+    gradle init --type java-application --dsl groovy --project-name myapp --package com.example.myapp    
+
+gradle build
+
+gradle run
